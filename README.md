@@ -42,4 +42,38 @@ Assets: ProductListingContract
 
 ## FoodTracNet Transactions:
 
--
+----
+
+
+# Prerequisites
+
+# Download Code
+
+
+Setup GOPATH Environment variable:
+
+For Bash
+Edit your ~/.bash_profile to add the following line:
+
+`export GOPATH=$HOME/go`
+
+Save and exit your editor. Then, source your ~/.bash_profile.
+
+`source ~/.bash_profile`
+
+Create a directory relative to $GOPATH where foodtracnet will be installed:
+
+$ mkdir -p $GOPATH/src/github.com/hyperledger/
+$ cd $GOPATH/src/github.com/hyperledger/
+
+Use the git clone command to copy foodtracnet repository to this location:
+
+$ git clone https://github.com/quizoxis/hyperledger-foodtracnet.git
+
+
+# Network Setup
+
+## Create Network
+
+$ cd fabric-samples/basic-network
+$ ./start.sh
