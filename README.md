@@ -11,7 +11,9 @@
 
 ### Farmer Onboarding
 
-Farmers must provide the following information as part of the onbarding process.
+#### Requirements
+
+Farmers must provide the following information as part of the onboarding process.
 
 1. Product is Legal to sell
 2. Proper Documentation
@@ -38,9 +40,17 @@ Farmers must provide the following information as part of the onbarding process.
 - Warehouse
 - Retailer
 
-Assets: ProductListingContract
+## Assets:
+
+### FarmProductListingContract
+This asset is created by farmer to list the product and its details up for sale to manufacturer.
+
 
 ## FoodTracNet Transactions:
+
+- createFarmProductListing
+- transferListing
+
 
 ----
 
@@ -48,7 +58,6 @@ Assets: ProductListingContract
 # Prerequisites
 
 # Download Code
-
 
 Setup GOPATH Environment variable:
 
@@ -63,17 +72,17 @@ Save and exit your editor. Then, source your ~/.bash_profile.
 
 Create a directory relative to $GOPATH where foodtracnet will be installed:
 
-$ mkdir -p $GOPATH/src/github.com/hyperledger/
-$ cd $GOPATH/src/github.com/hyperledger/
+`$ mkdir -p $GOPATH/src/github.com/hyperledger/
+$ cd $GOPATH/src/github.com/hyperledger/`
 
-Use the git clone command to copy foodtracnet repository to this location:
+Use git clone to copy foodtracnet repository to this location:
 
-$ git clone https://github.com/quizoxis/hyperledger-foodtracnet.git
+`$ git clone https://github.com/quizoxis/hyperledger-foodtracnet.git`
 
 
-# Network Setup
+# Create Network
 
-## Create Network
+Start the network using the following command.
 
-$ cd fabric-samples/basic-network
-$ ./start.sh
+`$ cd fabric-samples/basic-network
+$ ./start.sh`
