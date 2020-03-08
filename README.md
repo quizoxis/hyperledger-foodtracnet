@@ -43,7 +43,9 @@ Farmers must provide the following information as part of the onboarding process
 ## Assets:
 
 ### FarmProductListingContract
-This asset is created by farmer to list the product and its details up for sale to manufacturer.
+This asset is created by farmer to list the product,
+States:
+- Offer
 
 
 ## FoodTracNet Transactions:
