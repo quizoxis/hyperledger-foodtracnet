@@ -40,9 +40,7 @@ Farmers must provide the following information as part of the onboarding process
 - Warehouse
 - Retailer
 
-## Assumtions
-
-### ProductPalletContract
+## Assumptions
 
 - A Pallet contains ONLY a single type of product.
 - Only owner of pallet can ship and receive the pallet.
