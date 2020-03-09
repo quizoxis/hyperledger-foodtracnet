@@ -7,13 +7,13 @@ SPDX-License-Identifier: Apache-2.0
 // Utility class for collections of ledger states --  a state list
 const StateList = require('./../ledger-api/statelist.js');
 
-const FoodPallet = require('./pallet.js');
+const ProductPallet = require('./pallet.js');
 
 class PalletList extends StateList {
 
     constructor(ctx) {
-        super(ctx, 'org.foodtracnet.foodpalletlist');
-        this.use(FoodPallet);
+        super(ctx, 'org.foodtracnet.productpalletlist');
+        this.use(ProductPallet);
     }
 
     async addPallet(pallet) {

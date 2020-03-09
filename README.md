@@ -40,19 +40,28 @@ Farmers must provide the following information as part of the onboarding process
 - Warehouse
 - Retailer
 
+## Assumtions
+
+### ProductPalletContract
+
+- A Pallet contains ONLY a single type of product.
+- Only owner of pallet can ship and receive the pallet.
+
 ## Assets:
 
-### FarmProductListingContract
+### Product Pallet Contract
+
 This asset is created by farmer to list the product,
 States:
-- Offer
 
+- ProductPalletContract
 
 ## FoodTracNet Transactions:
 
-- createFarmProductListing
-- transferListing
-
+- ProductPalletContract.create
+- ProductPalletContract.purchase
+- ProductPalletContract.ship
+- ProductPalletContract.receive
 
 ----
 

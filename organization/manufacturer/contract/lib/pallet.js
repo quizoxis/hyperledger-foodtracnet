@@ -1,4 +1,4 @@
-/*
+creator/*
 SPDX-License-Identifier: Apache-2.0
 */
 
@@ -7,34 +7,34 @@ SPDX-License-Identifier: Apache-2.0
 // Utility class for ledger state
 const State = require('./../ledger-api/state.js');
 
-// Enumerate food pallet state values
+// Enumerate product pallet state values
 const fpState = {
     CREATED: 1,
-    READYTOSHIP: 2,
+    PURCHASED: 2,
     SHIPPED: 3,
-    DELIVERED: 4
+    RECEIVED: 4
 };
 
 /**
- * FoodPallet class extends State class
+ * ProductPallet class extends State class
  * Class will be used by application and smart contract to define a pallet
  */
-class FoodPallet extends State {
+class ProductPallet extends State {
 
     constructor(obj) {
-        super(FoodPallet.getClass(), [obj.issuer, obj.palletNumber]);
+        super(ProductPallet.getClass(), [obj.creator, obj.palletNumber]);
         Object.assign(this, obj);
     }
 
     /**
      * Basic getters and setters
     */
-    getIssuer() {
-        return this.issuer;
+    getCreator() {
+        return this.creator;
     }
 
-    setIssuer(newIssuer) {
-        this.issuer = newIssuer;
+    setCreator(newCreator) {
+        this.creator = newCreator;
     }
 
     getOwner() {
@@ -51,37 +51,60 @@ class FoodPallet extends State {
     setCreated() {
         this.currentState = fpState.CREATED;
     }
-
-    setReadToShip() {
-        this.currentState = fpState.READYTOSHIP;
+    setPurchased() {
+      this.currentState = fpState.PURCHASED;
     }
 
     setShipped() {
         this.currentState = fpState.SHIPPED;
     }
 
-    setDelivered() {
-      this.currentState = fpState.DELIVERED;
+    setReceived() {
+      this.currentState = fpState.RECEIVED;
+    }
+
+    setProductName(sProductName) {
+      this.productName = sProductName;
+    }
+
+    setProductQuantity(sProductQuantity) {
+      this.productQuantity = sProductQuantity;
+    }
+
+    setCreateDateTime(sDateTime) {
+      this.createDateTime = sDateTime;
+    }
+
+    setPurchaseDateTime(sDateTime){
+      this.purchaseDateTime = sDateTime;
+    }
+
+    setShipDateTime(sDateTime){
+      this.shipDateTime = sDateTime;
+    }
+
+    setReceivedDateTime(sDateTime){
+      this.receivedDateTime = sDateTime;
     }
 
     isCreated() {
         return this.currentState === fpState.CREATED;
     }
 
-    isReadToShip() {
-        return this.currentState === fpState.READYTOSHIP;
+    isPurchased() {
+      return this.currentState === fpState.PURCHASED;
     }
 
     isShipped() {
-        return this.currentState === fpState.Shipped;
+        return this.currentState === fpState.SHIPPED;
     }
 
-    isDelivered() {
-        return this.currentState === fpState.DELIVERED;
+    isReceived() {
+        return this.currentState === fpState.RECEIVED;
     }
 
     static fromBuffer(buffer) {
-        return FoodPallet.deserialize(buffer);
+        return ProductPallet.deserialize(buffer);
     }
 
     toBuffer() {
@@ -89,23 +112,23 @@ class FoodPallet extends State {
     }
 
     /**
-     * Deserialize a state data to food pallet
+     * Deserialize a state data to product pallet
      * @param {Buffer} data to form back into the object
      */
     static deserialize(data) {
-        return State.deserializeClass(data, FoodPallet);
+        return State.deserializeClass(data, ProductPallet);
     }
 
     /**
-     * Factory method to create a food pallet object
+     * Factory method to create a pallet object
      */
-    static createInstance(issuer, palletNumber, createDateTime, priceValue) {
-        return new FoodPallet({ issuer, palletNumber, createDateTime, priceValue });
+    static createInstance(creator, palletNumber, createDateTime, productName, productQuantity, price) {
+        return new ProductPallet({ creator, palletNumber, createDateTime, productName, productQuantity, productQuantityUnit, price});
     }
 
     static getClass() {
-        return 'org.foodtracnet.pallet';
+        return 'org.foodtracnet.productpallet';
     }
 }
 
-module.exports = FoodPallet;
+module.exports = ProductPallet;
