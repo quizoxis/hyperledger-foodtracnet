@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "a2d58a6f-0118-4c29-9255-ae0e3ab3778a",
+		"name": "Secure RESTful API using  NodeJS JWT ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register A User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"{{user-name}}\", \n\t\"email\":\"{{user-email}}\", \n\t\"password\":\"{{user-passwd}}\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-base-url}}/api/v1/auth/register",
+					"host": [
+						"{{api-base-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				},
+				"description": "{{apiurl}}/api/v1/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "Login User And Get JWT Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2e5bc9b0-0b88-44f7-84f7-63d090b6ad7b",
+						"exec": [
+							"var jsonResponseBody = JSON.parse(responseBody);",
+							"var jsonResult = jsonResponseBody.success;",
+							"console.log(jsonResult);",
+							"",
+							"pm.environment.set(\"user-token\", jsonResult[0].token );",
+							"pm.environment.set(\"user-id\", jsonResult[0].userid);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"{{user-email}}\", \n\t\"password\":\"{{user-passwd}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api-base-url}}/api/v1/auth/login",
+					"host": [
+						"{{api-base-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				},
+				"description": "Login user with email and password\n// API Endpoint\nlocalhost:3000/api/v1/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Validate Token And Get Logged In User Details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{user-token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{api-base-url}}/api/v1/users/{{user-id}}",
+					"host": [
+						"{{api-base-url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"{{user-id}}"
+					]
+				},
+				"description": "// API Endpoint\n\nlocalhost:3000/api/v1/users/5c6d5855d5d3800aa37544ca"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "bf48f85d-2f8a-4c72-8486-ca7e9c12d095",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9f6f62eb-1f7c-4f1c-a934-8886e55223a3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
