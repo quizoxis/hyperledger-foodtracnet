@@ -32,6 +32,9 @@ class StateList {
         let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
         let data = State.serialize(state);
         await this.ctx.stub.putState(key, data);
+
+        // Dispatch Create Event
+        ctx.stub.setEvent('CreatePallet', data);
     }
 
     /**
@@ -60,6 +63,9 @@ class StateList {
         let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
         let data = State.serialize(state);
         await this.ctx.stub.putState(key, data);
+
+        // Dispatch Update Event
+        ctx.stub.setEvent('UpdatePallet', data);
     }
 
     /** Stores the class for future deserialization */
