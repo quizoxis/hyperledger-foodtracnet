@@ -19,11 +19,13 @@ Request-Type: POST
 `#
 curl -X POST -H 'Content-Type: application/json' \
               -H 'x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNjhmY2FjZDg2ODI1MTFkZmFhZGUxNSIsImlhdCI6MTU4MzkzOTcyMiwiZXhwIjoxNTg0MDI2MTIyfQ.otlWybM9aOEbUidGZFAbpDBbNoRfUNJT-iXwBMD-Stg' \
-              -d '{"palletNumber":"F1001",\
-                    "productName":"Envy Apple",\
-                    "productQuantity":"1000",\
-                    "productQuantityUnit":"kg",\
-                    "price":"3000"
+              -d '{"palletNumber":"F1001", \
+                    "productName":"Envy Apple", \
+                    "productQuantity":"1000", \
+                    "productQuantityUnit":"kg", \
+                    "price":"3000", \
+                    "creator":"Willis", \
+                    "createDateTime":"20200115161012" \
                     }' \
               http://localhost:3000/api/v1/palletcontract
 `
@@ -33,23 +35,63 @@ curl -X POST -H 'Content-Type: application/json' \
 
 Parameters:
 - palletNumber
+- currentOwner
 - newOwner
 - price
+- creator
 - purchaseDateTime
+
+`#
+curl -X PUT -H 'Content-Type: application/json' \
+              -H 'x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNjhmY2FjZDg2ODI1MTFkZmFhZGUxNSIsImlhdCI6MTU4MzkzOTcyMiwiZXhwIjoxNTg0MDI2MTIyfQ.otlWybM9aOEbUidGZFAbpDBbNoRfUNJT-iXwBMD-Stg' \
+              -d '{"palletNumber":"F1001", \
+                    "currentOwner":"Willis", \
+                    "newOwner":"Manufacturer", \
+                    "price":"3000", \
+                    "creator":"Willis", \
+                    "purchaseDateTime":"20200119131012" \
+                    }' \
+              http://localhost:3000/api/v1/palletcontract/F1001/purchase
+`
 
 ### ship
 
 Parameters:
+- creator
 - palletNumber
 - currentOwner
 - shipDateTime
 
+`#
+curl -X PUT -H 'Content-Type: application/json' \
+              -H 'x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNjhmY2FjZDg2ODI1MTFkZmFhZGUxNSIsImlhdCI6MTU4MzkzOTcyMiwiZXhwIjoxNTg0MDI2MTIyfQ.otlWybM9aOEbUidGZFAbpDBbNoRfUNJT-iXwBMD-Stg' \
+              -d '{"palletNumber":"F1001",\
+                    "currentOwner":"Manufacturer" \
+                    "creator":"Willis", \
+                    "shipDateTime":"20200121101012" \
+                    }' \
+              http://localhost:3000/api/v1/palletcontract/F1001/ship
+`
+
+
 ### receive
 
 Parameters:
+- creator
 - palletNumber
 - receivingOwner
 - receivedDateTime
+
+`#
+curl -X PUT -H 'Content-Type: application/json' \
+              -H 'x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNjhmY2FjZDg2ODI1MTFkZmFhZGUxNSIsImlhdCI6MTU4MzkzOTcyMiwiZXhwIjoxNTg0MDI2MTIyfQ.otlWybM9aOEbUidGZFAbpDBbNoRfUNJT-iXwBMD-Stg' \
+              -d '{"palletNumber":"F1001",\
+                    "receivingOwner":"Manufacturer" \
+                    "creator":"Willis", \
+                    "receivedDateTime":"20200122181012" \
+                    }' \
+              http://localhost:3000/api/v1/palletcontract/F1001/receive
+`
 
 # Requirements and Dependencies
 
