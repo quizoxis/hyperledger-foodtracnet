@@ -53,7 +53,7 @@ class ProductPalletContract extends Contract {
    * @param {String} createDateTime pallet creation date
    * @param {String} productName Name of the product loaded on pallet
    * @param {Integer} productQuantity Quantity of product
-   * @param {String} productQuantityUnit Unit of quantity i.e. item,kg,tonnes 
+   * @param {String} productQuantityUnit Unit of quantity i.e. item,kg,tonnes
    * @param {Integer} price price of pallet
   */
   async create(ctx, creator, palletNumber, createDateTime, productName, productQuantity, productQuantityUnit, price) {
